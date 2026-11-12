@@ -3,25 +3,22 @@
 Hybrid graph + vector retrieval over a multi-source corpus (arXiv papers, Wikipedia,
 GitHub READMEs), with LLM-based entity extraction and entity resolution into Neo4j.
 
-**Status: in progress.** Last updated: 12 Nov 2026.
+## Design
+1. Ingest: collect and clean documents from three sources
+2. Chunk: section-aware chunking
+3. Extract: LLM-based entity and relation extraction into a typed schema
+4. Resolve: merge duplicate entities (embedding similarity + LLM adjudication)
+5. Store: Neo4j for the graph, Qdrant for chunk embeddings
+6. Retrieve: combine graph traversal with vector search
+7. Evaluate: compare vector-only, graph-only and hybrid retrieval on multi-hop questions
 
-## Progress
-- [x] Environment, Neo4j AuraDB + local Qdrant, embeddings (BAAI/bge-small-en-v1.5)
-- [x] Corpus collection script (95 documents: 40 arXiv, 30 Wikipedia, 25 READMEs)
-- [x] Graph schema v1 (see docs/schema.md)
-- [ ] Text cleaning and chunking
-- [ ] LLM entity/relation extraction
-- [ ] Entity resolution
-- [ ] Hybrid retrieval (graph traversal + vector search)
-- [ ] Evaluation: vector-only vs graph-only vs hybrid on multi-hop questions
-- [ ] Web UI with source-graph view and feedback buttons
-- [ ] Public demo
+The graph schema is in docs/schema.md.
 
-## Results
-Not available yet. Numbers will be added here only after they are measured.
-
-## Demo
-Coming soon.
+## Repository contents
+- scripts/fetch_corpus.py: builds the corpus (arXiv, Wikipedia, GitHub READMEs)
+- scripts/inspect_corpus.py, scripts/peek.py: corpus statistics and inspection
+- scripts/check_services.py: verifies Neo4j, Qdrant and embedding model connections
+- docs/schema.md: entity types, relation types and graph structure
 
 ## Setup
 1. Python 3.12, then `python -m venv .venv` and activate it
@@ -29,6 +26,3 @@ Coming soon.
 3. Copy `.env.example` to `.env` and fill in your values
 4. `python scripts/check_services.py` to verify the connections
 5. `python scripts/fetch_corpus.py` to download the corpus
-
-## Project log
-Daily decisions and problems are recorded in docs/log.md.

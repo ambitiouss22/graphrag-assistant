@@ -1,3 +1,0 @@
-- Corpus stats: 95 docs, 3.38M chars (~845k tokens). arXiv median 40k chars (max 248k); wikipedia median 16k; readme median 16k (max 70k)
-- Data issues: arXiv has hard line breaks, hyphenation, page numbers; READMEs have HTML/badges/code blocks; Wikipedia clean (== headings == usable for chunking)
-- Decision: extract only the first 20k chars of arXiv and 16k chars of wiki/readme; tune extraction prompt on 5-10 docs first

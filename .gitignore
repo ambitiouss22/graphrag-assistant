@@ -2,3 +2,5 @@
 .env
 data/
 __pycache__/
+TODO.md
+docs/log.md
